@@ -1,0 +1,35 @@
+<html>
+    <head>
+      <title>ADMIN - Delete Posts</title>
+         <script type="text/javascript">
+
+         </script>
+
+    </head>
+<body>
+   <a href="Admin.html">Click here to go back</a><br/><br/>
+  <form action="DeletePosts.php" method="post">
+    <h1 > Choose all Posts you wish to delete: </h1>
+    <!-- <h2 id="question" style="display: inline">Question 5: Who is the smartest person alive?</h2><br> -->
+    <select>
+      <option name="answer1" value="<?php echo $row ['Username']; ?> "></option>
+      <option value="<?php echo $row ['Username']; ?> ">1</option>
+      <option value="<?php echo $row ['Username']; ?> ">2</option>
+      <option value="<?php echo $row ['Username']; ?> ">3</option>
+    </select>
+    <!--
+    <input type="radio" name="post1" value="a. Nikoli Tesla"> a) Nikoli Tesla<br>
+    <input type="radio" name="post2" value="b. you"> b) you<br>
+    <input type="radio" name="answer5" value="c. Einstein"> c) Einstein<br>
+    <input type="radio" name="answer5" value="d. Bill Gates"> d) Bill Gates<br><br><br> -->
+
+            <input type="submit"></input>
+
+            
+
+  </form>
+	<a  href="ViewUsers.php">-View Current Users </a>  <br>
+        <a  href="ViewUserPosts.html">-View User's Posts</a> <br><br>
+
+</body>
+</html>

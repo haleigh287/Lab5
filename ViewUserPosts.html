@@ -1,0 +1,25 @@
+<html>
+    <head>
+      <title>View User Posts</title>
+         <script type="text/javascript">
+
+         </script>
+
+    </head>
+<body>
+  <a href="Admin.html">Click here to go back</a><br/><br/>
+  <form action="ViewUserPosts.php" method="post">
+    <h3 >Select the user whose posts you wish to see: </h3>
+
+    <select>
+      <option name="user" value="<?php echo $row ['Username']; ?> "></option>
+      <option name = "user" value="<?php echo $row ['Username']; ?> "></option>
+      <option name = "user" value="<?php echo $row ['Username']; ?> "></option>
+      <option name = "user" value="<?php echo $row ['Username']; ?> "></option>
+    </select>
+    <br><br>
+            <input type="submit"></input>
+  </form>
+
+</body>
+</html>
