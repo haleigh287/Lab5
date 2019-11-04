@@ -3,29 +3,116 @@
 
 $user = $_POST['user'];
 $text = $_POST['text'];
+$mysqli = new mysqli("mysql.eecs.ku.edu", "haleighhunt", "ed9naif7", "haleighhunt");
 
-if( $user == "boo")//User exists
-  {
-    if($text != "")
-    {
-    echo $user . " added a post! <br>";
-    echo $text;
-    $sql = "INSERT INTO Posts ( author_id, content)
-    VALUES ('$user', '$text')";
-    mysqli_query($sql);
-    }
-    else //is empty
-    {
-      echo "Unable to add blank paragraph. ";
-    }
-  }
-else {
-  echo "Not a User yet. Refer to:";
 
-   echo "<a href='CreateUser.html' target='_blank'>Click here to Sign-Up</a>";
-//
- $link = "<a href='CreateUser.html' target='_blank'>Click here to Sign-Up</a>";
+if($user == "" || $text =="")//blank
+{
+echo "All fields must be filled in<br> ";
+echo "<a href='CreatePosts.html'>Go back</a>";
+
 }
+else//not blank
+{
+
+    $s = "SELECT Username FROM Users";
+    $bool = "false";
+
+    if($result = $mysqli->query($s))
+    {
+      while ($row = $result->fetch_assoc()) {
+           if($user == $row["Username"])
+           {
+             $bool = "true";
+           }
+        }
+      }
+  if($bool == "true")
+  {
+    $sql = "INSERT INTO Posts (author_id, content)
+    VALUES ('$user', '$text')";
+      //$sql = "INSERT INTO Users (Username) VALUES ($user)";
+
+       if ($mysqli->query($sql) === TRUE) {
+       echo $user . " added a post! <br>";
+       echo $text;
+  }
+
+  }
+  else
+  {
+    echo "<br><br>Not a User yet. Refer to link: <br>";
+    echo "<a href='CreateUser.html' >Click here to Sign-Up</a>";
+  }
+}
+
+
+
+//
+//
+//
+//   echo "<br><br>Not a User yet. Refer to link: <br>";
+//
+//    echo "<a href='CreateUser.html' >Click here to Sign-Up</a>";
+//
+//    if ($mysqli->query($sql) === TRUE) {
+//
+//      echo $user . " added a post! <br>";
+//      echo $text
+//  }
+//
+// else {
+//   $sql = "INSERT INTO Posts (author_id, content)
+//   VALUES ('$user', '$text')";
+//
+// }
+//
+// }
+
+// // old stuff
+// $sql2 = "SELECT Username FROM Users";
+// //$mysql->query($sql);
+//
+// if($result = $mysqli->query($sql2))
+// {
+//   while ($row = $result->fetch_assoc()) {
+//        if($row["Username"] == $user)
+//        {
+//              if($text != "" && $user !="")
+//              {
+//
+//              $sql = "INSERT INTO Posts (author_id, content)
+//              VALUES ('$user', '$text')";
+//              if ($mysqli->query($sql) === TRUE) {
+//                echo $user . " added a post! <br>";
+//                echo $text;
+//              } else {
+//              echo "failed: " . $sql . "<br>" . $mysqli->error;
+//              }
+//              }
+//              else //is empty
+//              {
+//                echo "All fields must be filled in<br> ";
+//                echo "<a href='CreatePosts.html'>Go back</a>";
+//              }
+//
+//        }
+//        else{
+//          echo "<br><br>Not a User yet. Refer to link: <br>";
+//
+//           echo "<a href='CreateUser.html' >Click here to Sign-Up</a>";
+//        }
+//
+//
+//     }
+
+
+
+
+
+
+
+
 
 
 

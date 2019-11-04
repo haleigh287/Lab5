@@ -1,42 +1,35 @@
 <?php
 $user = $_POST['user'];
 //
- $mysqli = new mysqli("database_URL", "my_user", "my_password", "database_name");
+ $mysqli = new mysqli("mysql.eecs.ku.edu", "haleighhunt", "ed9naif7", "haleighhunt");
  // if ($mysqli->connect_errno) {
  //     printf("Connect failed: %s\n", $mysqli->connect_error);
  //     exit();
  // }
 $PreexistingUser =  "SELECT Username FROM Users
- 	WHERE Username == $user";
+ 	WHERE Username = $user";
+$result = $mysqli->query($PreexistingUser);
 
 if($user == "" )
 {
  echo "Must provide valid username to enter in database <br>";
-
-}
-else if($user == $PreexistingUser )
-{
- echo "User already exists in database <br>";
+  echo "<a href='CreateUser.html'>Re-enter Credentials</a>";
 
 }
 else
 {
+$sql = "INSERT INTO Users (Username) VALUES ('$user')";
+  //$sql = "INSERT INTO Users (Username) VALUES ($user)";
 
-echo $user . " added to Database <br>";
+   if ($mysqli->query($sql) === TRUE) {
 
-  // MySQL [haleighhunt]> INSERT INTO Users (Username)
-
-  // $sql = "INSERT INTO Users (Username)
-  // VALUES (" . $user)"
-  // INSERT INTO Users (Username)
-  // VALUES ($user);
-  echo "Welcome to the family, " . $user . "<br>";
-
-  //echo SHOW COLUMNS FROM Posts;
-  $sql = "INSERT INTO Users (Username) VALUES ('$user')";
-   $mysqli->query($sql);
-   // mysqli_query($sql);
-    //mysqli->query($sql);
+    echo $user . " added to Database <br>";
+    echo "<a href='CreatePosts.html'>Wanna get Posting?</a>";
+} else {
+  echo "User already exists in database <br><br>";
+   echo "<a href='CreatePosts.html'>Wanna Post-It?</a>";
 }
 
- ?>
+}
+
+?>

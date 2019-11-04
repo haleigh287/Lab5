@@ -7,11 +7,61 @@
 
     </head>
 <body>
-  <a href="Admin.html">Click here to go back</a><br/><br/>
-  <form action="ViewUserPosts.php" method="post">
+  <a href="Admin.html">Click here for Admin page</a><br/>
+  <a href="ViewUserPosts.php">Click here to go back</a><br/><br/>
+  <!-- Welcome <?php echo $_GET["name"]; ?><br>
+Your email address is: <?php echo $_GET["email"]; ?> -->
+
+
+<!-- <ul>
+<?php for($i=1;$i<=5;$i++){ ?>
+<li>Menu Item <?php echo $i; ?></li>
+<?php } ?>
+</ul> -->
+
+
+
+<form action='ViewUserPosts.php' method='post'>
+  <?php $mysqli = new mysqli("mysql.eecs.ku.edu", "haleighhunt", "ed9naif7", "haleighhunt"); ?>
+<?php $sql = "SELECT Username FROM Users"; ?>
+<?php $result = $mysqli->query($sql); ?>
+
+<select name="user" value=''>Users:</option>; // list box select command
+
+<?php  while ($row = $result->fetch_assoc()) { ?>
+     <option name = "user"><?php echo $row[Username]; ?></option>
+
+
+  <?php } ?>
+
+</select>
+
+<input type='submit'>
+
+</form>
+
+<!-- <?php
+ $sql = "SELECT Username FROM Users";
+$result = $mysqli->query($sql);
+while ($row = $result->fetch_assoc()) {
+     echo "<option value=$row[Username]>$row[Username]</option>";
+  }
+
+echo "</select>";
+
+echo "<input type='submit'>";
+ ?> -->
+<!--
+<h1 name="name" value="">Name: </h1><?php echo $_POST["Username"]; ?><br>
+
+ <h1 name="post" value="<?php echo $content;?>">Post: </h1> -->
+
+
+
+  <!-- <form action="ViewUserPosts.php" method="post">
     <h3 >Select the user whose posts you wish to see: </h3>
 
-    <select>
+    <select name="var" multiple="yes">
       <option name="user" value="<?php echo $row ['Username']; ?> "></option>
       <option name = "user" value="<?php echo $row ['Username']; ?> "></option>
       <option name = "user" value="<?php echo $row ['Username']; ?> "></option>
@@ -19,7 +69,14 @@
     </select>
     <br><br>
             <input type="submit"></input>
-  </form>
+  </form> -->
+  <!-- <form action="ViewUserPosts.php" method="get">
+  Name: <input type="text" name="name"><br>
+  E-mail: <input type="text" name="email"><br>
+  <input type="submit">
+  </form> -->
+
+
 
 </body>
 </html>

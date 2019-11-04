@@ -3,7 +3,7 @@
 
 $user = $_POST['user'];
 
- $mysqli = new mysqli("database_URL", "my_user", "my_password", "database_name");
+ $mysqli = new mysqli("mysql.eecs.ku.edu", "haleighhunt", "ed9naif7", "haleighhunt");
 // if ($mysqli->connect_errno) {
 //     printf("Connect failed: %s\n", $mysqli->connect_error);
 //     exit();
@@ -23,11 +23,13 @@ echo "Welcome, Admin. List of all current Users: <br>";
 //       }
 $sql = "SELECT Username FROM Users";
 //$mysql->query($sql);
+$user =1;
 
 if($result = $mysqli->query($sql))
 {
   while ($row = $result->fetch_assoc()) {
-        printf ("%s (%s)\n", $row["author_id"], $row["content"]);
+       echo $user . ". " . $row["Username"] . "<br>";
+	$user++;
     }
 
     /* free result set */
